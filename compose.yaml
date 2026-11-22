@@ -1,0 +1,23 @@
+name: podman-dns-doh
+services:
+  resolver:
+    build: ./resolver
+    container_name: podman-doh
+    user: "65532:65532"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15053:1053/tcp"
+    volumes:
+      - type: bind
+        source: ./.certs
+        target: /doh
+        read_only: true
+        bind:
+          create_host_path: false
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    external: true
+    name: appnet

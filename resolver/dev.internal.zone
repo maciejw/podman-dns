@@ -1,0 +1,5 @@
+$ORIGIN dev.internal.
+$TTL 5
+@ IN SOA localhost. hostmaster.localhost. (1 60 60 60 5)
+@ IN NS localhost.
+@ IN DNAME dns.podman.
