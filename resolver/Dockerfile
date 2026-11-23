@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:26.04
+FROM docker.io/library/buildpack-deps:26.04-curl
 ARG APT_SOURCES_FILE=ubuntu.sources
 RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources
 COPY ${APT_SOURCES_FILE} /etc/apt/sources.list.d/sample.sources
