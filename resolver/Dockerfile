@@ -1,4 +1,4 @@
-FROM docker.io/library/buildpack-deps:26.04-curl
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0.12-noble
 ARG APT_SOURCES_FILE=ubuntu.sources
 RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources
 COPY ${APT_SOURCES_FILE} /etc/apt/sources.list.d/sample.sources
