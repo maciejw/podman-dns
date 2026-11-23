@@ -1,7 +1,10 @@
 name: podman-dns-doh
 services:
   resolver:
-    build: ./resolver
+    build:
+      context: ./resolver
+      args:
+        APT_SOURCES_FILE: "${APT_SOURCES_FILE:-ubuntu.sources}"
     container_name: podman-doh
     user: "65532:65532"
     restart: unless-stopped

@@ -1,5 +1,10 @@
-FROM docker.io/library/alpine:3.23
-RUN apk add --no-cache unbound
+FROM docker.io/library/ubuntu:26.04
+ARG APT_SOURCES_FILE=ubuntu.sources
+RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources
+COPY ${APT_SOURCES_FILE} /etc/apt/sources.list.d/sample.sources
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unbound \
+    && rm -rf /var/lib/apt/lists/*
 COPY unbound.conf /etc/unbound/podman.conf
 COPY dev.internal.zone /etc/unbound/dev.internal.zone
 # Podman puts appnet's DNS server in the container's resolv.conf.
